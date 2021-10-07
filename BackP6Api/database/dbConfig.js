@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const result = dotenv.config();
 
-mongoose
+mongoose.set('debug', true);
 
-.connect(
+mongoose.connect(
     process.env.HIDE_DB,
     { useNewUrlParser: true, useUnifiedTopology: true },    
 )

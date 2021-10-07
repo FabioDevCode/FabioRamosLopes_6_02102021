@@ -24,4 +24,4 @@ const server = http.createServer(app);
 
 
 
-server.listen(process.env.PORT || 3000, () => console.log("Serveur ouvert sur le bon port"));
+server.listen(process.env.PORT || 3000, () => console.log(`Serveur ouvert sur le bon port : ${process.env.PORT}`));
