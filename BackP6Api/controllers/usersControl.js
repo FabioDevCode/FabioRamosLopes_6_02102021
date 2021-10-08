@@ -7,7 +7,7 @@ const result = dotenv.config();
 
 
 
-exports.signup = (req, res) => {
+exports.signup = (req, res, next) => {
 
     const emailCrypt = cryptojs.HmacSHA256(req.body.email, `${process.env.CLE_CRYPTO_EMAIL}`).toString();
 
@@ -22,7 +22,10 @@ exports.signup = (req, res) => {
 
         user.save()
         .then(() => res.status(201).json({ message : "Nouvel utilisateur créé !"}))
-        .catch((error) => res.status(400).json({ error }));
+        .catch((error) => {
+            console.log(error)
+            res.status(400)
+        });
 
     })
 
