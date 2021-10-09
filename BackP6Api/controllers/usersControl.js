@@ -22,10 +22,7 @@ exports.signup = (req, res, next) => {
 
         user.save()
         .then(() => res.status(201).json({ message : "Nouvel utilisateur créé !"}))
-        .catch((error) => {
-            console.log(error)
-            res.status(400)
-        });
+        .catch((error) => res.status(400).json({ error }));
 
     })
 
@@ -35,3 +32,9 @@ exports.signup = (req, res, next) => {
     });
 
 };
+
+// exports.login = (req, res, next) => {
+
+
+
+// }
