@@ -2,13 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 require('./database/dbConfig');
 const usersRoutes = require('./routes/usersRoutes')
-const bodyParser = require('body-parser');
 
 const app = express();
 
-
 app.use(morgan('dev'));
-
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,10 +14,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
 
+app.use(express.json());
 
 app.use("/api/auth", usersRoutes)
+// app.use("/api/sauces", sauceRoutes)
 
 
 
