@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const result = dotenv.config();
 
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
 
 mongoose.connect(
     process.env.HIDE_DB,

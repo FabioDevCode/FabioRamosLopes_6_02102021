@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 require('./database/dbConfig');
+const path = require('path');
 const usersRoutes = require('./routes/usersRoutes')
+const saucesRoutes = require('./routes/saucesRoutes')
 
 const app = express();
 
@@ -14,12 +16,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use(express.json());
-
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/auth", usersRoutes)
-// app.use("/api/sauces", sauceRoutes)
-
+app.use("/api/sauces", saucesRoutes)
 
 
 
