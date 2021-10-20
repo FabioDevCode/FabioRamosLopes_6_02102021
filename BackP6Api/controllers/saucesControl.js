@@ -3,7 +3,6 @@ const fs = require('fs');
 
 
 exports.createSauce = (req, res, next) => {
-
     const sauceData = JSON.parse(req.body.sauce)
     delete sauceData._id;
     const sauce = new Sauce({
@@ -49,7 +48,6 @@ exports.likesSauces = (req, res, next) => {
         case 0 :
             Sauce.findOne({ _id: sauceId }) 
             .then((sauce) => {
-
                 if(sauce.usersLiked.includes(userId)) {
                     Sauce.updateOne(
                     { _id: sauceId },
@@ -65,7 +63,6 @@ exports.likesSauces = (req, res, next) => {
                     .then(() => res.status(200).json({ message: "Votre dislike a été supprimé" }))
                     .catch((error) => res.status(400).json({ error }))
                 }
-
             })
             .catch((error) => res.status(400).json({ error }))
         break;
@@ -81,6 +78,7 @@ exports.likesSauces = (req, res, next) => {
 };
 
 exports.updateSauce = (req, res, next) => {
+
     const sauceData = req.file ? {
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`

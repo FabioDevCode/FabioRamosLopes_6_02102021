@@ -9,14 +9,12 @@ module.exports = (req, res, next) => {
         const userId = virifyToken.userId;
         
         if (req.body.userId && req.body.userId !== userId) {
-            throw 'ID invalide';
+            throw 'User ID invalide';
         } else {
             next();
         };
 
-    } catch {
-        res.status(401).json({
-            error: new Error('Requète invalide')
-        });
+    } catch (error) {
+        res.status(401).json({ error: error | 'Requète invalide' });
     }
 };

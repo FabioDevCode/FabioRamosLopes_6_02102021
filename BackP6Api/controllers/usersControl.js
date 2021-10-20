@@ -11,7 +11,6 @@ exports.signup = (req, res, next) => {
 
     bcrypt.hash(req.body.password, 10)
     .then((hashedPassword)=> {
-
         const user = new usersModel({
             email : emailCrypt,
             password : hashedPassword
@@ -31,15 +30,12 @@ exports.login = (req, res, next) => {
 
     usersModel.findOne({ email: emailCrypt})
     .then((user) => {
-
         if(!user) {
             return res.status(401).json({ error: "L'utilisateur n'existe pas. Vérifiez l'adresse email."});
         }
 
         bcrypt.compare(req.body.password, user.password)
-
         .then((validation) => {
-
             if(!validation) {
                 return res.status(401).json({ error: "Mot de passe erroné."});
             }
